@@ -4,7 +4,7 @@ from playwright.async_api import async_playwright
 '''
 Проверка заполнение полностью правильными данными
 '''
-async def test_valid_email():
+async def test_valid_creat():
     try:
         async with async_playwright() as p:
                 browser = await p.firefox.launch()
@@ -18,11 +18,11 @@ async def test_valid_email():
                 await page.locator("label:has-text('Ссылка на изображение') + input").fill('https://example.com/image.jpg')
                 await page.click(".chakra-button.css-u6bxse")
                 await browser.close()
-                message = 'Test valid email: \033[32mСomplete\033[0m'
+                message = 'Test valid creat: \033[32mСomplete\033[0m'
     except:
-        message = 'Test valid email: \x1b[31;1mFalled\x1b[0m'
+        message = 'Test valid creat: \x1b[31;1mFalled\x1b[0m'
     return message
 
 if __name__ == '__main__':
     loop = asyncio.get_event_loop()
-    print(loop.run_until_complete(test_valid_email()))
+    print(loop.run_until_complete(test_valid_creat()))

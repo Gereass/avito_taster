@@ -1,9 +1,9 @@
 import asyncio
 from playwright.async_api import async_playwright
 '''
-Проверка валидации строк ввода цена и ввода случайных символов в url
+Проверка валидации строк ввода цены и подтверждение того, что неправильными данные могут быт внесены
 '''
-async def test_valid_negativ_price():
+async def test_valid_price():
     try:
         async with async_playwright() as p:
                 browser = await p.firefox.launch()
@@ -12,7 +12,7 @@ async def test_valid_negativ_price():
                 await page.goto('http://tech-avito-intern.jumpingcrab.com/advertisements/')
                 await page.locator("xpath=//button[text()='Создать']").click()
                 await page.locator("label:has-text('Название') + input").fill('neeeet0')
-                await page.locator("label:has-text('Цена') + input").fill(-111)
+                await page.locator("label:has-text('Цена') + input").fill('-111')
                 await page.locator("label:has-text('Описание') + input").fill('Описание')
                 await page.locator("label:has-text('Ссылка на изображение') + input").fill('neeee')
                 await page.click(".chakra-button.css-u6bxse")
@@ -46,4 +46,4 @@ async def test_valid_negativ_price():
 
 if __name__ == '__main__':
     loop = asyncio.get_event_loop()
-    print(loop.run_until_complete(test_valid_negativ_price()))
+    print(loop.run_until_complete(test_valid_price()))
